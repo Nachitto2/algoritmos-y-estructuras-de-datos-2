@@ -2,8 +2,7 @@ package modelos;
 
 import interfaces.INodo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Grafo<T> {
     private List<Nodo<T>> nodos;
@@ -15,4 +14,57 @@ public class Grafo<T> {
     public void agregarNodo(INodo<T> nodo) {
         nodos.add((Nodo<T>) nodo);
     }
+
+    private void bfs(INodo<T> nodoInicio) {
+        Set<T> visitados = new HashSet<>();
+        Queue<INodo<T>> cola = new LinkedList<>();
+
+        cola.add(nodoInicio);
+        visitados.add(nodoInicio.getDato());
+
+        System.out.println("Recorrido BFS:");
+        while (!cola.isEmpty()) {
+            INodo<T> actual = cola.poll();
+            System.out.print(actual.getDato() + " ");
+
+            for (INodo<T> vecino : actual.getVecinos()) {
+                T val = vecino.getDato();
+                if (!visitados.contains(val)) {
+                    visitados.add(val);
+                    cola.add(vecino);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+
+    /*
+    public void bfs(int inicio) {
+
+     if (!nodos.containsKey(inicio)) return; // precondición
+     ///Lista y cola
+     Set<Integer> visitados = new HashSet<>(); // Conjunto de nodos visitados
+
+     Queue<Nodo> cola = new LinkedList<>(); // Cola para el recorrido
+
+     Nodo nodoInicio = nodos.get(inicio);
+     cola.add(nodoInicio);
+     visitados.add(inicio);
+
+     System.out.println("Recorrido BFS:");
+     while (!cola.isEmpty()) {
+         Nodo actual = cola.poll();
+         System.out.print(actual.getValor() + " ");
+
+         for (INodo vecino : actual.getVecinos()) {
+             if (!visitados.contains(vecino.getValor())) {
+                 visitados.add(vecino.getValor());
+                 cola.add((Nodo) vecino);
+             }
+         }
+     }
+     System.out.println();
+ }
+     */
 }

@@ -38,4 +38,8 @@ public class Nodo<T> implements INodo<T> {
         vecinos.add((Nodo<T>) nodo);
     }
 
+    public List<Nodo<T>> getVecinos(){
+        return vecinos;
+    }
+
 }

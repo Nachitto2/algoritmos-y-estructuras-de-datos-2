@@ -1,5 +1,7 @@
 package interfaces;
 
+import modelos.Nodo;
+
 import java.util.List;
 
 public interface INodo<T> {
@@ -8,7 +10,7 @@ public interface INodo<T> {
     public T getDato();
     public void setDato(T dato);
 
-
+    public List<Nodo<T>> getVecinos();
     public void agregarVecino(INodo<T> nodo);
 
 
